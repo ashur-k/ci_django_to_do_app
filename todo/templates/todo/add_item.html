@@ -54,41 +54,18 @@
 		</ul>
 	</header>
 	<main>
-		<div class="container" style="height:62vh;">
-			<h1 class="green-text text-darken-4">Things I need to do:</h1>
 
-			<table class=" light-green lighten-5">
-				{% for item in items %}
-				<tr>
-					{% if item.done %}
-					<td class="flow-text green-text text-darken-4"><strike>{{ item.name }}:</strike></td>
-					{% else %}
-					<td class="flow-text green-text text-darken-4">{{ item.name }}:</td>
-					{% endif %}
-					<td>
-						<a href="/toggle/{{ item.id }}">
-							<button class="waves-effect waves-light btn green darken-4">Toggle</button>
-						</a>
-					</td>
-					<td>
-						<a href="/edit/{{ item.id }}">
-							<button class="waves-effect waves-light btn green darken-4">Edit</button>
-						</a>
-					</td>
-					<td>
-						<a href="/delete/{{ item.id }}">
-							<button class="waves-effect waves-light btn green darken-4">Delete</button>
-						</a>
-					</td>
-				</tr>
-				{% empty %}
-				<tr>
-					<td>You have nothing to do.</td>
-				</tr>
-				{% endfor%}
-			</table>
-</div>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		<div class="container">
+			<h1 class="green-text text-darken-4">Add a Todo Item:</h1>
+			<form method="POST" action="add">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<div>
+					<p>
+						<button class="waves-effect waves-light btn green darken-4" type="submit">Add Item</button>
+					</p>
+				</div>
+			</form>
 		</div>
 	</main>
 	<footer class="page-footer  light-green lighten-1" >

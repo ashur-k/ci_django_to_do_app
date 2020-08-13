@@ -35,8 +35,8 @@
 			<nav class="light-green lighten-1">
 				<div class="nav-wrapper">
 					<a href="#!" class="brand-logo hide-on-med-and-down black-text" style="margin-left:22px;">Task Planner</a>
-					<a href="#!" class="brand-logo center hide-on-large-only black-text" >Task Planner</a>
-					<a href="#!" class="brand-logo center hide-on-large-only black-text" >Task Planner</a>
+					<a href="" class="brand-logo center hide-on-large-only black-text" >Task Planner</a>
+					<a href="" class="brand-logo center hide-on-large-only black-text" >Task Planner</a>
 					<a href="#" data-target="mobile-demo"
 						class="sidenav-trigger right"><i class="material-icons">menu</i></a>
 					<ul class="right hide-on-med-and-down" style="margin-right:22px; font-weight:bolder;">
@@ -54,41 +54,19 @@
 		</ul>
 	</header>
 	<main>
-		<div class="container" style="height:62vh;">
-			<h1 class="green-text text-darken-4">Things I need to do:</h1>
+		<div class="container">
 
-			<table class=" light-green lighten-5">
-				{% for item in items %}
-				<tr>
-					{% if item.done %}
-					<td class="flow-text green-text text-darken-4"><strike>{{ item.name }}:</strike></td>
-					{% else %}
-					<td class="flow-text green-text text-darken-4">{{ item.name }}:</td>
-					{% endif %}
-					<td>
-						<a href="/toggle/{{ item.id }}">
-							<button class="waves-effect waves-light btn green darken-4">Toggle</button>
-						</a>
-					</td>
-					<td>
-						<a href="/edit/{{ item.id }}">
-							<button class="waves-effect waves-light btn green darken-4">Edit</button>
-						</a>
-					</td>
-					<td>
-						<a href="/delete/{{ item.id }}">
-							<button class="waves-effect waves-light btn green darken-4">Delete</button>
-						</a>
-					</td>
-				</tr>
-				{% empty %}
-				<tr>
-					<td>You have nothing to do.</td>
-				</tr>
-				{% endfor%}
-			</table>
-</div>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+			<h1 class="green-text text-darken-4">Edit a Todo Item:</h1>
+
+			<form method="POST">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<div>
+					<p>
+						<button class="waves-effect waves-light btn green darken-4" type="submit">Update Item</button>
+					</p>
+				</div>
+			</form>
 		</div>
 	</main>
 	<footer class="page-footer  light-green lighten-1" >
