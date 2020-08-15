@@ -32,7 +32,7 @@
 <body>
 	<header>
 		<div class="navbar-fixed">
-			<nav class="light-green lighten-1">
+			<nav class="">
 				<div class="nav-wrapper">
 					<a href="#!" class="brand-logo hide-on-med-and-down black-text" style="margin-left:22px;">Task Planner</a>
 					<a href="#!" class="brand-logo center hide-on-large-only black-text" >Task Planner</a>
@@ -40,44 +40,50 @@
 					<a href="#" data-target="mobile-demo"
 						class="sidenav-trigger right"><i class="material-icons">menu</i></a>
 					<ul class="right hide-on-med-and-down" style="margin-right:22px; font-weight:bolder;">
-						<li> <a href="/add" class="black-text">Add an Item Todo</a></li>
-						<li><a href="#footer" class="black-text">About me</a></li>
-						<li><a href="#footer" class="black-text">Follow me</a></li>
+						<li><a href="/add" class="black-text"><i class="fas fa-plus-circle"> Add an Item Todo</i> </a></li>
+						<li><a href="#footer" class="black-text"><i class="fas fa-info-circle"> About me</i></a></li>
+						<li><a href="#footer" class="black-text"><i class="fas fa-id-badge"> Follow me</i></a></li>
 					</ul>
 				</div>
 			</nav>
 		</div>
-		<ul class="sidenav light-blue accent-4" id="mobile-demo" style="padding:15px;">
+		<ul class="sidenav" id="mobile-demo" style="padding:15px;">
 			<li> <a class="white-text" href="/add" style="font-size:18px; font-weight:bolder;">Add an Item Todo</a></li>
-			<li><a class="white-text" href="#footer" style="font-size:18px; font-weight:bolder;">About me</a></li>
-			<li><a class="white-text" href="#footer" style="font-size:18px; font-weight:bolder;">Follow me</a></li>
+			<li><a class="white-text" href="/#footer" style="font-size:18px; font-weight:bolder;">About me</a></li>
+			<li><a class="white-text" href="/#footer" style="font-size:18px; font-weight:bolder;">Follow me</a></li>
 		</ul>
 	</header>
 	<main>
-		<div class="container" style="height:62vh;">
-			<h1 class="green-text text-darken-4">Things I need to do:</h1>
+		<div class="container" style="margin-bottom: 20px;">
+			<h3 class="">Things I need to do:</h3>
 
-			<table class=" light-green lighten-5">
+			<table class="">
 				{% for item in items %}
 				<tr>
 					{% if item.done %}
-					<td class="flow-text green-text text-darken-4"><strike>{{ item.name }}:</strike></td>
+					<td class="flow-text red lighten-4"><strike>{{ item.name }}:</strike></td>
 					{% else %}
-					<td class="flow-text green-text text-darken-4">{{ item.name }}:</td>
+					<td class="flow-text red lighten-4">{{ item.name }}:</td>
 					{% endif %}
-					<td>
+					<td class="red lighten-4">
+                        {% if item.done %}
 						<a href="/toggle/{{ item.id }}">
-							<button class="waves-effect waves-light btn green darken-4">Toggle</button>
+							<button class="waves-effect waves-light btn  red lighten-2"><i class="fas fa-toggle-on grey-text text-darken-4"></i> Toggle</button>
 						</a>
+                        {% else %}
+                        <a href="/toggle/{{ item.id }}">
+							<button class="waves-effect waves-light btn  red lighten-2"><i class="fas fa-toggle-off grey-text text-darken-4"></i> Toggle</button>
+						</a>
+                        {% endif %}
 					</td>
-					<td>
+					<td class="red lighten-4">
 						<a href="/edit/{{ item.id }}">
-							<button class="waves-effect waves-light btn green darken-4">Edit</button>
+							<button class="waves-effect waves-light btn  red lighten-2"><i class="fas fa-user-edit grey-text text-darken-4"></i> Edit</button>
 						</a>
 					</td>
-					<td>
+					<td class="red lighten-4">
 						<a href="/delete/{{ item.id }}">
-							<button class="waves-effect waves-light btn green darken-4">Delete</button>
+							<button class="waves-effect waves-light btn  red lighten-2"><i class="fas fa-trash-alt grey-text text-darken-4"></i> Delete</button>
 						</a>
 					</td>
 				</tr>
@@ -87,11 +93,9 @@
 				</tr>
 				{% endfor%}
 			</table>
-</div>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-		</div>
+        </div>
 	</main>
-	<footer class="page-footer  light-green lighten-1" >
+	<footer class="page-footer" >
 		<div class="container">
 			<div class="row">
 				<div class="col l6 s12" >
@@ -124,6 +128,7 @@
 			</div>
 		</div>
 	</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 	<script>
